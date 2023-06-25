@@ -12,7 +12,10 @@ import org.springframework.ui.ModelMap;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.JsonMappingException;
 import com.springThymeleaf.models.Sinhvien;
+import com.springThymeleaf.services.SinhvienAPIService;
 import com.springThymeleaf.services.SinhvienService;
 import com.springThymeleaf.vos.SinhvienUpdateVO;
 import com.springThymeleaf.vos.SinhvienVO;
@@ -25,10 +28,18 @@ import java.util.Enumeration;
 public class SinhvienController {
     @Autowired
     private SinhvienService sinhvienService;
+    @Autowired
+    private SinhvienAPIService sinhvienAPIService;
 
+//    @GetMapping
+//    public String index(ModelMap modelMap) {
+//        modelMap.addAttribute("sinhviens", sinhvienService.findAll());
+//        return "sinhvien/index";
+//    }
+    
     @GetMapping
-    public String index(ModelMap modelMap) {
-        modelMap.addAttribute("sinhviens", sinhvienService.findAll());
+    public String index(ModelMap modelMap) throws JsonMappingException, JsonProcessingException {
+        modelMap.addAttribute("sinhviens", this.sinhvienAPIService.getDataFromAPI());
         return "sinhvien/index";
     }
 
@@ -76,6 +87,6 @@ public class SinhvienController {
                                @Valid @NotNull @PathVariable("id") int id
     ) throws Exception {
         this.sinhvienService.update(id, sinhvienUpdateVO);
-        return "redirect:/sinhvien/";
+        return "redirect:/sinhvien";
     }
 }

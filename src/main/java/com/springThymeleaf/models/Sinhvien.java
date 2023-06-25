@@ -1,6 +1,8 @@
 package com.springThymeleaf.models;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
 import java.util.HashSet;
@@ -25,6 +27,8 @@ import jakarta.persistence.Table;
 @Entity
 @Table(name = "sinhvien")
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class Sinhvien implements Serializable {
     @Id
     @Column(name = "id", nullable = false)
