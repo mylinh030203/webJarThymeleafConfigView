@@ -12,6 +12,7 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.springThymeleaf.models.Sinhvien;
+import com.springThymeleaf.vos.SinhvienVO;
 
 import io.micrometer.core.ipc.http.HttpSender.Response;
 
@@ -27,6 +28,15 @@ public class SinhvienAPIService {
 		    List<Sinhvien> svSinhvien = objectMapper.readValue(json, new TypeReference<List<Sinhvien>>() {});
 
 		    return svSinhvien;
+	}
+	
+	public ResponseEntity<SinhvienVO> post(SinhvienVO sv){
+		RestTemplate rest = new RestTemplate();
+		return rest.postForEntity("http://localhost:8080/api/sinhvien/create", sv, SinhvienVO.class);
+	}
+	public ResponseEntity<Sinhvien> postsv(Sinhvien sv){
+		RestTemplate rest = new RestTemplate();
+		return rest.postForEntity("http://localhost:8080/api/sinhvien/create", sv, Sinhvien.class);
 	}
 
 }

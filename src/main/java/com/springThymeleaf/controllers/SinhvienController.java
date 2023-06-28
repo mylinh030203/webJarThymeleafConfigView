@@ -55,21 +55,37 @@ public class SinhvienController {
     }
 
     @RequestMapping(value = "/create", method = RequestMethod.POST, consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
-    public String createSinhVien(ModelMap modelMap, @Valid SinhvienVO sinhvienVO, HttpServletRequest request) throws Exception {
-        System.out.println("Create: " + sinhvienVO);
-
-        // Log the form data
-        Enumeration<String> parameterNames = request.getParameterNames();
-        while (parameterNames.hasMoreElements()) {
-            String paramName = parameterNames.nextElement();
-            String paramValue = request.getParameter(paramName);
-            System.out.println(paramName + ": " + paramValue);
-        }
-
-        int sinhVienId = this.sinhvienService.save(sinhvienVO);
-        return "redirect:/sinhvien";
-    }
-    
+//    public String createSinhVien(ModelMap modelMap, @Valid SinhvienVO sinhvienVO, HttpServletRequest request) throws Exception {
+//        System.out.println("Create: " + sinhvienVO);
+//
+//        // Log the form data
+//        Enumeration<String> parameterNames = request.getParameterNames();
+//        while (parameterNames.hasMoreElements()) {
+//            String paramName = parameterNames.nextElement();
+//            String paramValue = request.getParameter(paramName);
+//            System.out.println(paramName + ": " + paramValue);
+//        }
+//
+//        int sinhVienId = this.sinhvienService.save(sinhvienVO);
+//        return "redirect:/sinhvien";
+//    }
+//    public String createSinhVien(ModelMap modelMap, @Valid SinhvienVO sinhvienVO, HttpServletRequest request) throws Exception {
+////        System.out.println("Create: " + sinhvienVO);
+////
+////        // Log the form data
+////        Enumeration<String> parameterNames = request.getParameterNames();
+////        while (parameterNames.hasMoreElements()) {
+////            String paramName = parameterNames.nextElement();
+////            String paramValue = request.getParameter(paramName);
+////            System.out.println(paramName + ": " + paramValue);
+////        }
+//    	sinhvienAPIService.post(sinhvienVO);
+//        return "redirect:/sinhvien";
+//    }
+    public String createSinhVien(Sinhvien sinhvien, HttpServletRequest request) throws Exception {
+  	sinhvienAPIService.postsv(sinhvien);
+      return "redirect:/sinhvien";
+  }
 
 
 
